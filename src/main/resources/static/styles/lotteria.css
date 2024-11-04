@@ -1,0 +1,99 @@
+html {
+    height: 100%;
+    font-family: 'Noto Sans KR', serif;
+}
+
+body {
+    height: inherit;
+}
+
+.wrap-box {
+    box-sizing: border-box;
+
+    + .wrap-box {
+        padding-bottom: 20px;
+        height: calc(100% - 60px);
+        border-top: 0.0625rem solid gainsboro;
+        background-color: #f8f8f8;
+        overflow: auto;
+    }
+
+    > .inner-box {
+        margin-left: auto;
+        margin-right: auto;
+        width: 700px;
+    }
+}
+
+.title-box {
+    height: 60px;
+    line-height: 60px;
+}
+
+.tab-box {
+    margin: 1.25rem 0;
+
+    > label {
+        padding: 7px 12px;
+        color: #666666;
+        font-size: 0.8em;
+        border-radius: 4px;
+        background-color: #dde0e366;
+        cursor: pointer;
+
+        &:has(> input:checked) {
+            color: #ffffff;
+            font-weight: 600;
+            background-color: #00a5b9;
+        }
+
+        + label {
+            margin-left: 10px;
+        }
+    }
+}
+
+.list-box {
+    display: grid;
+    column-gap: 35px;
+    row-gap: 40px;
+    grid-template-columns: repeat(3, 1fr);
+
+    & .hamburger-image {
+        width: 100%;
+        height: 225px;
+        object-fit: contain;
+        border: 1px solid #efe1f3;
+        background-color: #ffffff;
+    }
+
+    & .hamburger-data {
+        margin-block-end: 0.25em;
+        margin-block-start: 0.25em;
+        text-indent: 2px;
+    }
+
+    & .hamburger-name {
+        font-size: 0.85em;
+        font-weight: 500;
+    }
+
+    & .hamburger-price {
+        font-size: 0.95em;
+        font-weight: 600;
+    }
+}
+
+.search-field {
+    border: none;
+    background-color: transparent;
+
+    &:focus {
+        outline: none;
+        border-bottom: 0.0625rem solid #666666;
+    }
+}
+
+.close {
+    cursor: pointer;
+}

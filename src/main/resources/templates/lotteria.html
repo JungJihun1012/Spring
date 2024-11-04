@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lotteria</title>
+    <link rel="stylesheet" th:href="@{/styles/font.css}" />
+    <link rel="stylesheet" th:href="@{/styles/normalize.css}" />
+    <link rel="stylesheet" th:href="@{/styles/lotteria.css}" />
+</head>
+<body>
+    <header class="title-box wrap-box">
+        <h3 class="inner-box">롯데리아</h3>
+    </header>
+    <article class="wrap-box">
+        <section class="inner-box tab-box">
+            <label aria-label="추천메뉴 탭" role="tab">
+                <span>추천메뉴</span>
+                <input checked="checked" hidden="hidden" name="tab-content" type="radio" />
+            </label>
+            <label aria-label="전체메뉴 탭" role="tab">
+                <span>전체메뉴</span>
+                <input hidden="hidden" name="tab-content" type="radio" />
+            </label>
+        </section>
+        <section class="inner-box list-box">
+            <th:block th:each="hamburger: ${hamburgers}">
+                <div class="hamburger-box">
+                    <img class="hamburger-image" th:alt="${hamburger.name}" th:src="${hamburger.imagePath}" />
+                    <p class="hamburger-data hamburger-name" th:text="${hamburger.name}"></p>
+                    <p class="hamburger-data hamburger-price" th:text="|${#numbers.formatInteger(hamburger.price, 3, 'COMMA')}원|"></p>
+                </div>
+            </th:block>
+        </section>
+    </article>
+</body>
+</html>

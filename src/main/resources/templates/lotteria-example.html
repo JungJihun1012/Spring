@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lotteria</title>
+    <link rel="stylesheet" th:href="@{/styles/font.css}" />
+    <link rel="stylesheet" th:href="@{/styles/normalize.css}" />
+    <link rel="stylesheet" th:href="@{/styles/lotteria.css}" />
+</head>
+<body>
+    <header class="title-box wrap-box">
+        <h3 class="inner-box">롯데리아</h3>
+    </header>
+    <article class="wrap-box">
+        <section class="inner-box tab-box">
+            <label aria-label="추천메뉴 탭" role="tab">
+                <span>추천메뉴</span>
+                <input checked="checked" hidden="hidden" name="tab-content" type="radio" />
+            </label>
+            <label aria-label="전체메뉴 탭" role="tab">
+                <span>전체메뉴</span>
+                <input hidden="hidden" name="tab-content" type="radio" />
+            </label>
+            <label>
+                <span>이름</span>
+                <input id="search-hamburger" class="search-field" type="text" />
+            </label>
+            <label id="hamburger-add-button" aria-label="햄버거 추가 버튼" role="button">
+                <span>햄버거 추가</span>
+            </label>
+        </section>
+        <section id="hamburger-list" class="inner-box list-box"></section>
+    </article>
+    <dialog id="hamburger-dialog" class="dialog-box">
+        <form action="lotteria-add-menu" class="hamburger-add-form" method="post" enctype="multipart/form-data">
+            <label>
+                <span>햄버거 이름</span>
+                <input class="search-field" type="text" name="name" placeholder="햄버거 이름" />
+            </label>
+            <label>
+                <span>햄버거 가격</span>
+                <input class="search-field" type="number" name="price" placeholder="햄버거 가격" />
+            </label>
+            <label>
+                <span>이미지 경로</span>
+                <input class="search-field" type="file" name="image" placeholder="이미지 경로" accept="image/*" />
+            </label>
+            <label>
+                <span>신제품 여부</span>
+                <input class="search-field"  type="checkbox" name="isNew" placeholder="신제품 여부" />
+            </label>
+            <label>
+                <span>추천 여부</span>
+                <input class="search-field" type="checkbox" name="isRecommended" placeholder="추천 여부" />
+            </label>
+            <input type="submit" value="저장" />
+        </form>
+    </dialog>
+    <template id="hamburger-template">
+        <div class="hamburger-box">
+            <img id="hamburger-image" class="hamburger-image" />
+            <p id="hamburger-name" class="hamburger-data hamburger-name"></p>
+            <p id="hamburger-price" class="hamburger-data hamburger-price"></p>
+            <span id="hamburger-close">
+                <div class="close">X</div>
+            </span>
+        </div>
+    </template>
+    <script>
+        (function() {
+            /**
+             * 햄버거 인터페이스 정의
+             *
+             * @typedef {Object} Hamburger
+             * @property {string} name
+             * @property {number} price
+             * @property {string} imagePath
+             * @property {boolean} isNew
+             * @property {boolean} isRecommended
+             */
+
+            /**
+             * @type {HTMLButtonElement}
+             */
+            let hamburgerAdd;
+
+            /**
+             * @type {HTMLDialogElement}
+             */
+            let hamburgerDialog;
+
+            /**
+             * @type {HTMLElement}
+             */
+            let hamburgerSection;
+
+            /**
+             * @type {HTMLTemplateElement}
+             */
+            let hamburgerTemplate;
+
+            /**
+             * @type {HTMLInputElement}
+             */
+            let searchInput;
+
+            // 1번
+            window.addEventListener('DOMContentLoaded', function() {
+                hamburgerAdd = document.getElementById('hamburger-add-button');
+                hamburgerDialog = document.getElementById('hamburger-dialog');
+                hamburgerSection = document.getElementById('hamburger-list');
+                hamburgerTemplate = document.getElementById('hamburger-template');
+                searchInput = document.getElementById('search-hamburger');
+
+                initializeSearchEvent();
+                initializeDialogEvent();
+            });
+
+            function initializeDialogEvent() {
+                hamburgerAdd.addEventListener('click', () => hamburgerDialog.showModal());
+                hamburgerDialog.addEventListener('click', ({ target }) => {
+                    if (target === hamburgerDialog) {
+                        hamburgerDialog.close();
+                    }
+                });
+            }
+
+            function initializeSearchEvent() {
+                searchInput.addEventListener('input', function() {
+                    const hamburgerName = window.encodeURIComponent(searchInput.value?.trim() ?? '');
+
+                    fetch(`lotteria-menus?hamburgerName=${hamburgerName}`)
+                        .then(response => response.json())
+                        .then(hamburgers => {
+                            hamburgerSection.replaceChildren();
+                            updateHamburgers(hamburgers);
+                        });
+                });
+
+                const inputEvent = new Event('input');
+
+                searchInput.dispatchEvent(inputEvent);
+            }
+
+            /**
+             * 햄버거 목록 업데이트
+             *
+             * @param {Hamburger[]} hamburgers
+             */
+            function updateHamburgers(hamburgers) {
+                for (const hamburger of hamburgers) {
+                    const hamburgerTemplateClone = hamburgerTemplate.content.cloneNode(true);
+                    const hamburgerImage = hamburgerTemplateClone.getElementById('hamburger-image');
+                    const hamburgerName = hamburgerTemplateClone.getElementById('hamburger-name');
+                    const hamburgerPrice = hamburgerTemplateClone.getElementById('hamburger-price');
+                    const hamburgerClose = hamburgerTemplateClone.getElementById("hamburger-close");
+                    const hamburgerBox = hamburgerTemplateClone.querySelector(".hamburger-box");
+                    hamburgerImage.setAttribute('alt', hamburger.name);
+                    hamburgerImage.setAttribute('src', hamburger.imagePath);
+                    hamburgerName.textContent = hamburger.name;
+                    hamburgerPrice.textContent = hamburger.price;
+                    hamburgerSection.appendChild(hamburgerTemplateClone);
+
+                    hamburgerClose.addEventListener("click", async (e) => {
+                        const res = await fetch(`lotteria-delete-menu?hamburgerName=${hamburger.name}`, {
+                            method: "delete"
+                        })
+                        if(res.status === 200) {
+                            const json = await res.json();
+
+                            window.alert(json);
+                            hamburgerSection.removeChild(hamburgerBox);
+                        }
+                    });
+                }
+            }
+        })();
+    </script>
+</body>
+</html>

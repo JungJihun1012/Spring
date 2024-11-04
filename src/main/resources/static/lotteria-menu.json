@@ -1,0 +1,177 @@
+[
+  {
+    "name": "통새우크런KIM버거",
+    "price": 7700,
+      "imagePath": "/images/통새우크런KIM버거.png",
+    "isNew": false,
+    "isRecommended": false
+  },
+  {
+    "name": "불고기포텐버거",
+    "price": 7700,
+    "imagePath": "/images/불고기포텐버거.png",
+    "isNew": false,
+    "isRecommended": false
+  },
+  {
+    "name": "전주 비빔라이스 버거",
+    "price": 6900,
+    "imagePath": "/images/전주 비빔라이스 버거.png",
+    "isNew": false,
+    "isRecommended": false
+  },
+  {
+    "name": "리아 새우 베이컨",
+    "price": 5900,
+    "imagePath": "/images/리아 새우 베이컨.png",
+    "isNew": false,
+    "isRecommended": false
+  },
+  {
+    "name": "리아 불고기 베이컨",
+    "price": 5900,
+    "imagePath": "/images/리아 불고기 베이컨.png",
+    "isNew": false,
+    "isRecommended": false
+  },
+  {
+    "name": "더블 한우불고기버거",
+    "price": 12600,
+    "imagePath": "/images/더블 한우불고기버거.png",
+    "isNew": false,
+    "isRecommended": false
+  },
+  {
+    "name": "한우불고기버거",
+    "price": 8600,
+    "imagePath": "/images/한우불고기버거.png",
+    "isNew": false,
+    "isRecommended": false
+  },
+  {
+    "name": "더블 클래식치즈버거(버터번)",
+    "price": 7000,
+    "imagePath": "/images/더블 클래식치즈버거(버터번).png",
+    "isNew": false,
+    "isRecommended": false
+  },
+  {
+    "name": "더블 치킨버거",
+    "price": 5600,
+    "imagePath": "/images/더블 치킨버거.png",
+    "isNew": false,
+    "isRecommended": false
+  },
+  {
+    "name": "더블 데리버거",
+    "price": 4700,
+    "imagePath": "/images/더블 데리버거.png",
+    "isNew": false,
+    "isRecommended": false
+  },
+  {
+    "name": "리아 불고기 더블(빅불)",
+    "price": 7300,
+    "imagePath": "/images/리아 불고기 더블(빅불).png",
+    "isNew": false,
+    "isRecommended": false
+  },
+  {
+    "name": "리아 불고기",
+    "price": 4800,
+    "imagePath": "/images/리아 불고기.png",
+    "isNew": false,
+    "isRecommended": false
+  },
+  {
+    "name": "모짜렐라 인 더 버거 베이컨",
+    "price": 7600,
+    "imagePath": "/images/모짜렐라 인 더 버거 베이컨.png",
+    "isNew": false,
+    "isRecommended": false
+  },
+  {
+    "name": "더블엑스투버거",
+    "price": 6900,
+    "imagePath": "/images/더블엑스투버거.png",
+    "isNew": false,
+    "isRecommended": false
+  },
+  {
+    "name": "리아 사각새우 더블",
+    "price": 5900,
+    "imagePath": "/images/리아 사각새우 더블.png",
+    "isNew": false,
+    "isRecommended": false
+  },
+  {
+    "name": "리아 새우",
+    "price": 4800,
+    "imagePath": "/images/리아 새우.png",
+    "isNew": false,
+    "isRecommended": false
+  },
+  {
+    "name": "미라클버거",
+    "price": 5300,
+    "imagePath": "/images/미라클버거.png",
+    "isNew": false,
+    "isRecommended": false
+  },
+  {
+    "name": "더블 미라클버거",
+    "price": 6800,
+    "imagePath": "/images/더블 미라클버거.png",
+    "isNew": false,
+    "isRecommended": false
+  },
+  {
+    "name": "핫크리스피치킨버거",
+    "price": 6000,
+    "imagePath": "/images/핫크리스피치킨버거.png",
+    "isNew": false,
+    "isRecommended": false
+  },
+  {
+    "name": "클래식치즈버거(버터번)",
+    "price": 5300,
+    "imagePath": "/images/클래식치즈버거(버터번).png",
+    "isNew": false,
+    "isRecommended": false
+  },
+  {
+    "name": "티렉스버거",
+    "price": 4800,
+    "imagePath": "/images/티렉스버거.png",
+    "isNew": false,
+    "isRecommended": false
+  },
+  {
+    "name": "치킨버거",
+    "price": 4100,
+    "imagePath": "/images/치킨버거.png",
+    "isNew": false,
+    "isRecommended": true
+  },
+  {
+    "name": "데리버거",
+    "price": 3500,
+    "imagePath": "/images/데리버거.png",
+    "isNew": false,
+    "isRecommended": true
+  },
+  {
+    "name": "한우연인팩",
+    "price": 16000,
+    "imagePath": "/images/한우연인팩.png",
+    "isNew": false,
+    "isRecommended": true
+  },
+  {
+    "name": "한우명품팩",
+    "price": 17800,
+    "imagePath": "/images/한우명품팩.png",
+    "isNew": false,
+    "isRecommended": false
+  }
+]
