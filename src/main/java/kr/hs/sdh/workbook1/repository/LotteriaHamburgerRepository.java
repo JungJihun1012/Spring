@@ -10,8 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Set;
 
-@Repository
-public final class LotteriaHamburgerRepository implements HamburgerRepository, InitializingBean {
+public class LotteriaHamburgerRepository implements HamburgerRepository, InitializingBean {
 
     private final ObjectMapper objectMapper;
 
