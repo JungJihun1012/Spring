@@ -64,6 +64,9 @@
             <span id="hamburger-close">
                 <div class="close">X</div>
             </span>
+            <div id="hamburger-btn">
+                <button class="btn">판매</button>
+            </div>
         </div>
     </template>
     <script>
@@ -155,6 +158,7 @@
                     const hamburgerPrice = hamburgerTemplateClone.getElementById('hamburger-price');
                     const hamburgerClose = hamburgerTemplateClone.getElementById("hamburger-close");
                     const hamburgerBox = hamburgerTemplateClone.querySelector(".hamburger-box");
+                    const hamburgerBtn = hamburgerTemplateClone.getElementById("hamburger-btn");
                     hamburgerImage.setAttribute('alt', hamburger.name);
                     hamburgerImage.setAttribute('src', hamburger.imagePath);
                     hamburgerName.textContent = hamburger.name;
@@ -172,6 +176,26 @@
                             hamburgerSection.removeChild(hamburgerBox);
                         }
                     });
+
+                    hamburgerBtn.addEventListener("click", async () =>{
+                        const formData = new FormData();
+
+                        formData.append("name", hamburger.name);
+                        formData.append("price", hamburger.price);
+                        formData.append("saleDateTime", new Date().toISOString().replace('Z', '').replace(/\.[0-9]{3}/, ''));
+
+                        await fetch(`hamburger-sell`, {
+                            body: formData,
+                            method: "post"
+                        });
+
+                        // if(res.status === 200) {
+                        //     const json = await res.json();
+                        //
+                        //     console.log(json.value);
+                        // }
+                        // alert("판매가 완료되었습니다");
+                    })
                 }
             }
         })();

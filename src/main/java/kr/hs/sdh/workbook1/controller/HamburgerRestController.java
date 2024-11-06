@@ -2,6 +2,7 @@ package kr.hs.sdh.workbook1.controller;
 
 import jakarta.servlet.http.HttpServletResponse;
 import kr.hs.sdh.workbook1.entity.Hamburger;
+import kr.hs.sdh.workbook1.entity.History;
 import kr.hs.sdh.workbook1.service.HamburgerService;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -46,10 +47,15 @@ public class HamburgerRestController {
     }
 
     @DeleteMapping("/lotteria-delete-menu")
-
     private Map<String, String> lotteriaDeleteMenu(@RequestParam final String hamburgerName) {
         this.hamburgerService.removeHamburger(hamburgerName);
         return Collections.singletonMap("message", hamburgerName + "이/가 메뉴에서 삭제하였습니다");
+    }
+
+    @PostMapping("/hamburger-sell")
+    private String saleHamburger(final History history) {
+        this.hamburgerService.setHamburgerHistory(history);
+        return "판매가 완료되었습니다.";
     }
 
 }
