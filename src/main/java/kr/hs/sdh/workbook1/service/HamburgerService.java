@@ -2,6 +2,7 @@ package kr.hs.sdh.workbook1.service;
 
 import kr.hs.sdh.workbook1.entity.Hamburger;
 import kr.hs.sdh.workbook1.entity.History;
+import kr.hs.sdh.workbook1.entity.Login;
 import kr.hs.sdh.workbook1.repository.HamburgerRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -74,4 +75,9 @@ public final class HamburgerService {
             }
         }
     };
+    public void setLogin(final Login login) {
+        if(login.getUsername() != null) {
+
+        }
+    }
 }

@@ -57,5 +57,4 @@ public class HamburgerRestController {
         this.hamburgerService.setHamburgerHistory(history);
         return "판매가 완료되었습니다.";
     }
-
 }

@@ -28,6 +28,9 @@
             <label id="hamburger-add-button" aria-label="햄버거 추가 버튼" role="button">
                 <span>햄버거 추가</span>
             </label>
+            <label  id="hamburger-login">
+                <span>로그인</span>
+            </label>
         </section>
         <section id="hamburger-list" class="inner-box list-box"></section>
     </article>
@@ -188,16 +191,15 @@
                             body: formData,
                             method: "post"
                         });
-
-                        // if(res.status === 200) {
-                        //     const json = await res.json();
-                        //
-                        //     console.log(json.value);
-                        // }
-                        // alert("판매가 완료되었습니다");
+                        hamburgerBox.style.display = "none";
                     })
                 }
             }
+
+            const hamburgerLogin = document.getElementById("hamburger-login");
+            hamburgerLogin.addEventListener("click", () => {
+                window.location.href = "login";
+            })
         })();
     </script>
 </body>
