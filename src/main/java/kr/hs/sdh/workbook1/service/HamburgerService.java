@@ -1,6 +1,8 @@
 package kr.hs.sdh.workbook1.service;
 
 import kr.hs.sdh.workbook1.entity.Hamburger;
+import kr.hs.sdh.workbook1.entity.History;
+import kr.hs.sdh.workbook1.entity.Login;
 import kr.hs.sdh.workbook1.repository.HamburgerRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -8,6 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -60,5 +63,21 @@ public final class HamburgerService {
         );
         System.out.println(hamburger.getName());
         this.hamburgerRepository.deleteHamburger(hamburger);
+    }
+
+    public void setHamburgerHistory(final History history) {
+        if(history.getPrice() > 0) {
+            List<Hamburger> hamburgers = getHamburgers();
+            for(Hamburger hamburger : hamburgers) {
+                if(hamburger.getName().equals(history.getName())) {
+                    hamburgerRepository.saveHamburgerHistory(history);
+                }
+            }
+        }
+    };
+    public void setLogin(final Login login) {
+        if(login.getUsername() != null) {
+
+        }
     }
 }

@@ -10,8 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Set;
 
-@Repository
-public final class LotteriaHamburgerRepository implements HamburgerRepository, InitializingBean {
+public class LotteriaHamburgerRepository implements InitializingBean {
 
     private final ObjectMapper objectMapper;
 
@@ -36,18 +35,15 @@ public final class LotteriaHamburgerRepository implements HamburgerRepository, I
         }
     }
 
-    @Override
     public Set<Hamburger> findHamburgers() {
         return this.hamburgers;
     }
 
-    @Override
     public void deleteHamburger(final Hamburger hamburger) {
         this.delteHamburgers.add(hamburger);
         this.hamburgers.remove(hamburger);
     }
 
-    @Override
     public void saveHamburger(final Hamburger hamburger) {
         this.deleteHamburger(hamburger);
         this.hamburgers.add(hamburger);

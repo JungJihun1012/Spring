@@ -28,6 +28,9 @@
             <label id="hamburger-add-button" aria-label="햄버거 추가 버튼" role="button">
                 <span>햄버거 추가</span>
             </label>
+            <label  id="hamburger-login">
+                <span>로그인</span>
+            </label>
         </section>
         <section id="hamburger-list" class="inner-box list-box"></section>
     </article>
@@ -64,6 +67,9 @@
             <span id="hamburger-close">
                 <div class="close">X</div>
             </span>
+            <div id="hamburger-btn">
+                <button class="btn">판매</button>
+            </div>
         </div>
     </template>
     <script>
@@ -155,6 +161,7 @@
                     const hamburgerPrice = hamburgerTemplateClone.getElementById('hamburger-price');
                     const hamburgerClose = hamburgerTemplateClone.getElementById("hamburger-close");
                     const hamburgerBox = hamburgerTemplateClone.querySelector(".hamburger-box");
+                    const hamburgerBtn = hamburgerTemplateClone.getElementById("hamburger-btn");
                     hamburgerImage.setAttribute('alt', hamburger.name);
                     hamburgerImage.setAttribute('src', hamburger.imagePath);
                     hamburgerName.textContent = hamburger.name;
@@ -172,8 +179,27 @@
                             hamburgerSection.removeChild(hamburgerBox);
                         }
                     });
+
+                    hamburgerBtn.addEventListener("click", async () =>{
+                        const formData = new FormData();
+
+                        formData.append("name", hamburger.name);
+                        formData.append("price", hamburger.price);
+                        formData.append("saleDateTime", new Date().toISOString().replace('Z', '').replace(/\.[0-9]{3}/, ''));
+
+                        await fetch(`hamburger-sell`, {
+                            body: formData,
+                            method: "post"
+                        });
+                        hamburgerBox.style.display = "none";
+                    })
                 }
             }
+
+            const hamburgerLogin = document.getElementById("hamburger-login");
+            hamburgerLogin.addEventListener("click", () => {
+                window.location.href = "login";
+            })
         })();
     </script>
 </body>
