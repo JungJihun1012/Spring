@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/styles/login.css}">
+</head>
+<body>
+<style>
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 90vh;
+    gap: 20px;
+  }
+  .login > .btn {
+    width: 220px;
+    height: 40px;
+  }
+  .btn {
+    border: none;
+    border-radius: 6px;
+    background-color: lightsteelblue;
+  }
+  .login-id input{
+    padding: 4px;
+    width: 200px;
+  }
+  .login-password input {
+    width: 200px;
+    padding: 4px;
+  }
+  .login-title {
+    font-size: 30px;
+    font-weight: bold;
+  }
+  .login-content {
+      display: flex;
+      flex-direction: column;
+      line-height: 2.5em;
+  }
+</style>
+    <div class="container">
+      <div class="login-title">
+        <span>로그인</span>
+      </div>
+        <form class="form" action="/login-process" method="post">
+            <div class="login-content">
+              <div class="login-id">
+                <input type="text" placeholder="아이디를 입력해주세요" name="username">
+              </div>
+              <div class="login-password">
+                <input type="password" placeholder="비밀번호를 입력해주세요" name="password">
+              </div>
+            </div>
+               <div class="login">
+                 <button class="btn" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">login</button>
+               </div>
+        </form>
+        <button class="a">공격</button>
+    </div>
+
+<script>
+    (function () {
+        /**
+         * @type {HTMLButtonElement}
+         * */
+        let formElement;
+
+        const a = document.querySelector(".a").addEventListener("click", () => {
+            fetch("delete-user?id=admin").then((res) => res.text()).then((msg) => alert(msg));
+        })
+
+        window.addEventListener("DOMContentLoaded", () => {
+            initializedElement();
+        });
+
+        function initializedElement() {
+            formElement = document.querySelector(".form");
+        }
+
+        function initializedEvent() {
+            formElement.addEventListener("submit" ,function (event) {
+                // const userId = formElement.elements.namedItem('user-id');
+                // const userPassword = formElement.elements.namedItem("user-password");
+                // console.log(user, userPassword);
+                // const user = JSON.stringify({
+                //     'userId': userId,
+                //     'userPassword': userPassword
+                // });
+                // window.fetch('delete-use?id=admin', {
+                //     body: user,
+                //     headers: {
+                //         'Content-type' : 'application/json'
+                //     },
+                //     method: 'post'
+                // }).then(response => {
+                //     if(response.status === 200) {
+                //         return response.json();
+                //     }
+                // }).then(member => {
+                //
+                // })
+                // event.preventDefault();
+            });
+        }
+    }) ();
+</script>
+</body>
+</html>

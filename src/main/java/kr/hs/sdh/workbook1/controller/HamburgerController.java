@@ -31,4 +31,6 @@ public final class HamburgerController {
         return "lotteria-example";
     }
 
+    @GetMapping(value = "/login")
+    private String login() { return "login"; }
 }

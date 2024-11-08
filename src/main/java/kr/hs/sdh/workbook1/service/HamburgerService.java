@@ -74,10 +74,5 @@ public final class HamburgerService {
                 }
             }
         }
-    };
-    public void setLogin(final Login login) {
-        if(login.getUsername() != null) {
-
-        }
     }
 }
