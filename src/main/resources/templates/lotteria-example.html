@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" >
 <head>
     <meta charset="UTF-8">
     <title>Lotteria</title>
@@ -9,9 +9,12 @@
 </head>
 <body>
     <header class="title-box wrap-box">
-        <h3 class="inner-box">롯데리아</h3>
+        <h3 class="inner-box" sec:authorize="hasRole('ADMIN')">롯데리아</h3>
     </header>
     <article class="wrap-box">
+        <th:block sec:authorize="hasRole('GUEST')">
+
+        </th:block>
         <section class="inner-box tab-box">
             <label aria-label="추천메뉴 탭" role="tab">
                 <span>추천메뉴</span>
@@ -26,7 +29,7 @@
                 <input id="search-hamburger" class="search-field" type="text" />
             </label>
             <label id="hamburger-add-button" aria-label="햄버거 추가 버튼" role="button">
-                <span>햄버거 추가</span>
+                <span sec:authorize="hasRole('GUEST')">햄버거 추가</span>
             </label>
             <label  id="hamburger-login">
                 <span>로그인</span>
